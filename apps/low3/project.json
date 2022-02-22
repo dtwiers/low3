@@ -19,7 +19,8 @@
       "executor": "@nrwl/next:server",
       "options": {
         "buildTarget": "low3:build",
-        "dev": true
+        "dev": true,
+        "proxyConfig": "apps/low3/proxy.conf.json"
       },
       "configurations": {
         "production": {
