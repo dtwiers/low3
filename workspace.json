@@ -3,6 +3,7 @@
   "projects": {
     "low3": "apps/low3",
     "low3-e2e": "apps/low3-e2e",
-    "low3-server": "apps/low3-server"
+    "low3-server": "apps/low3-server",
+    "shared": "libs/shared"
   }
 }

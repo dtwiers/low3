@@ -1,2 +1,19 @@
 .page {
+  height: 1080px;
+  width: 1920px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  font-family: 'Exo 2';
+  font-size: 60px;
+  position: relative;
+}
+
+.lowerThirdArea {
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  height: 300px;
+  width: 1820px;
 }
