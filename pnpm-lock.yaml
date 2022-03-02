@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@brandingbrand/cargo-hold': ^11.35.0
   '@brandingbrand/react-cargo-hold': ^11.35.0
+  '@brandingbrand/standard-lens': ^11.35.0
   '@nrwl/cli': 13.8.3
   '@nrwl/cypress': 13.8.3
   '@nrwl/eslint-plugin-nx': 13.8.3
@@ -55,6 +56,7 @@ specifiers:
 dependencies:
   '@brandingbrand/cargo-hold': 11.35.0
   '@brandingbrand/react-cargo-hold': 11.35.0
+  '@brandingbrand/standard-lens': 11.35.0
   '@nrwl/next': 13.8.3_79dca79541c361058a2891644ec39639
   '@types/websocket': 1.0.5
   core-js: 3.21.1

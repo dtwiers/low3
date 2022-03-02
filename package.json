@@ -12,6 +12,7 @@
   "dependencies": {
     "@brandingbrand/cargo-hold": "^11.35.0",
     "@brandingbrand/react-cargo-hold": "^11.35.0",
+    "@brandingbrand/standard-lens": "^11.35.0",
     "@nrwl/next": "13.8.3",
     "@types/websocket": "^1.0.5",
     "core-js": "^3.6.5",

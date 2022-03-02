@@ -8,7 +8,7 @@
   position: relative;
   width: 1720px;
   height: 300px;
-  clip-path: polygon(0px 0px, 1720px 0px, 1680px 300px, 0px 300px);
+  clip-path: polygon(0px 0px, 1820px 0px, 1700px 300px, 0px 300px);
 }
 
 .footer {
@@ -81,6 +81,9 @@
 
 .logoContainer {
   margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .rightBorder {
@@ -89,6 +92,6 @@
   background: #fc0;
   position: absolute;
   bottom: 0;
-  transform: skew(-7.6deg);
+  transform: skew(-17.6deg);
   left: 1645px;
 }

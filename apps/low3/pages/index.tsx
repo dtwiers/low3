@@ -10,9 +10,9 @@ export const Index: React.FC = () => {
         <Third
           footer="To bid, call (888) 555-1431, or (877) 555-9999, or (777) 777-7777"
           header="Lot #45"
-          title="RAR Genetics"
+          title="Toenjes Show Pigs"
           subtitle="Lot #45534 | 10-9 Duroc Barrow"
-          asset="rar"
+          asset="toenjes"
         />
       </div>
     </div>
