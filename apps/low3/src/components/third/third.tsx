@@ -1,40 +1,45 @@
 import React from 'react';
-import { LogoProps } from '../logo';
+import { Low3Bar } from '../../models/api-state';
 import Logo from '../logo/logo';
-import styles from './third2.module.css';
+import styles from './third.module.css';
 
 export type ThirdProps = {
-  header?: string;
-  subtitle?: string;
-  title?: string;
-  footer?: string;
-  asset?: LogoProps['logoType'];
+  bar: Low3Bar;
+  isTransitioning?: boolean;
+  style?: React.CSSProperties;
 };
-const Third: React.FC<ThirdProps> = (props) => {
+const Third: React.FC<ThirdProps> = ({ bar, isTransitioning, style }) => {
   return (
-    <div className={`${styles.container} ${styles.animate}`}>
+    <div
+      style={style}
+      className={`${styles.container} ${
+        isTransitioning
+          ? `${styles.animate} ${styles.opacity0}`
+          : styles.opacity100
+      }`}
+    >
       <div
         className={`${styles.header} ${styles.animate} ${
-          props.header ? styles.headerWithText : styles.headerNoText
+          bar.header ? styles.headerWithText : styles.headerNoText
         }`}
       >
-        {props.header}
+        {bar.header}
       </div>
       <div className={styles.main}>
-        {props.asset && (
+        {bar.asset && (
           <div className={styles.logoContainer}>
-            <Logo logoType={props.asset} />
+            <Logo logoType={bar.asset} />
           </div>
         )}
         <div className={styles.mainText}>
-          {props.title && <div className={styles.title}>{props.title}</div>}
-          {props.subtitle && (
-            <div className={styles.subtitle}>{props.subtitle}</div>
+          {bar.title && <div className={styles.title}>{bar.title}</div>}
+          {bar.subtitle && (
+            <div className={styles.subtitle}>{bar.subtitle}</div>
           )}
         </div>
       </div>
-      <div className={styles.footer}>{props.footer}</div>
-      <div className={styles.rightBorder}></div>
+      <div className={styles.footer}>{bar.footer}</div>
+      <div className={styles.rightBorder} />
     </div>
   );
 };

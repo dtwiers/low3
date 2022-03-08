@@ -17,3 +17,16 @@
   height: 300px;
   width: 1820px;
 }
+
+.animated {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+}
+.invisible {
+  opacity: 0%;
+}
+
+.visible {
+  opacity: 100%;
+}

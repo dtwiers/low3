@@ -1,0 +1,37 @@
+.container {
+  font-family: 'Exo 2';
+  width: 440px;
+  padding: 20px;
+  border: 1px solid black;
+  
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+
+.textLabel {
+  flex: 1 0;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.textInput {
+  flex: 3 0;
+  /* background: #111; */
+  /* border: none; */
+  /* color: #ccc; */
+  font-family: 'Exo 2';
+  height: 30px;
+}
+
+.assetContainer {
+  margin: 20px 0px;
+}
+.form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}

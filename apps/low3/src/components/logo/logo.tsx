@@ -1,22 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import { LogoType } from '../../models/api-state';
 import styles from './logo.module.css';
-
-export type LogoType =
-  | 'conover'
-  | 'dcm'
-  | 'engelking'
-  | 'fivestar'
-  | 'fourt'
-  | 'kaufman'
-  | 'kourke'
-  | 'nfg'
-  | 'platner'
-  | 'rar'
-  | 'sieren'
-  | 'stensland'
-  | 'stewarts'
-  | 'toenjes';
 
 export type LogoProps = {
   logoType: LogoType;
