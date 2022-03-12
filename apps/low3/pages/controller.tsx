@@ -20,7 +20,7 @@ const usePushState = (initialState: Low3State) => {
     axios
       .get('/api/blob')
       .then((result) => result.data)
-      .then(setServerState);
+      .then((result) => setServerState(result ?? initialState));
   }, []);
   const [state, setState] = useState(initialState);
   const pushState = (data: Low3State) => {
@@ -77,10 +77,11 @@ const Controller: React.FC = () => {
           {serverState.visible ? 'hide' : 'show'}
         </button>
         <PresetManager
-          presets={serverState.presets}
+          state={serverState}
           activate={setActive}
-          setPresets={(presets) => pushState({ ...serverState, presets })}
-          load={pushActive$.next}
+          setState={pushState}
+          localActive={state.active}
+          load={pushActive$}
         />
       </div>
     </div>

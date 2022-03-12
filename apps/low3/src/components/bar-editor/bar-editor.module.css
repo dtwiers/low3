@@ -26,6 +26,9 @@
   /* color: #ccc; */
   font-family: 'Exo 2';
   height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 .assetContainer {
@@ -35,4 +38,11 @@
   width: 400px;
   display: flex;
   flex-direction: column;
+}
+
+.goLiveButton {
+  background-color: #00CC66;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
 }

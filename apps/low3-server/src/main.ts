@@ -3,10 +3,18 @@
  * This is only a minimal backend to get started.
  */
 
+import { EMPTY_ENTITY_STATE } from '@brandingbrand/cargo-hold';
 import * as express from 'express';
 import * as fs from 'fs';
 import * as http from 'http';
+import { defaultLow3Bar, Low3State } from './api-state';
 const app = express();
+
+const defaultState: Low3State = {
+  presets: EMPTY_ENTITY_STATE,
+  visible: false,
+  active: defaultLow3Bar,
+};
 
 app.post('/api/blob', (req, res) => {
   req.pipe(fs.createWriteStream(`${__dirname}/state.json`, { flags: 'w' }));
@@ -17,7 +25,7 @@ app.get('/api/blob', (req, res) => {
   try {
     res.send(fs.readFileSync(`${__dirname}/state.json`));
   } catch (e) {
-    res.send({});
+    res.send(defaultState);
   }
 });
 

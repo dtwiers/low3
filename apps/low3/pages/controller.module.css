@@ -14,6 +14,9 @@
   height: 50px;
   font-size: 24px;
   border-radius: 12px;
+  border: none;
+  margin-bottom: 10px;
+  transition: background-color 0.3s
 }
 
 .rightHalf {
@@ -23,9 +26,10 @@
 }
 
 .hideButton {
-  background: red;
+  background: #FF0033;
+  color: white;
 }
 
 .showButton {
-  background: green;
+  background: #00CC66;
 }

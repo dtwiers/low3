@@ -108,7 +108,7 @@ const BarEditor: React.FC<BarEditorProps> = (props) => {
             </div>
           ))}
         </div>
-        <button>Submit</button>
+        <button className={styles.goLiveButton}>Go Live</button>
       </form>
     </div>
   );

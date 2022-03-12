@@ -1,3 +1,10 @@
+import {
+  createEntityAdaptor,
+  EMPTY_ENTITY_STATE,
+  EntityState,
+} from '@brandingbrand/cargo-hold';
+import { createLens } from '@brandingbrand/standard-lens';
+
 export type LogoType = typeof logos[number];
 
 export const logos = [
@@ -18,6 +25,12 @@ export const logos = [
   'toenjes',
 ] as const;
 
+export const defaultLow3Bar: Low3Bar = {
+  header: '',
+  footer: '',
+  title: '',
+  subtitle: '',
+};
 export type Low3Bar = {
   header?: string;
   footer?: string;
@@ -25,14 +38,24 @@ export type Low3Bar = {
   subtitle?: string;
   asset?: LogoType;
 };
+export type Low3BarWithName = {
+  name: string;
+} & Low3Bar;
+
 export type Low3State = {
-  presets: Low3Bar[];
+  presets: EntityState<Low3BarWithName>;
   active: Low3Bar | null;
   visible: boolean;
 };
 
 export const initialLow3State: Low3State = {
-  presets: [],
+  presets: EMPTY_ENTITY_STATE,
   active: null,
   visible: false,
 };
+
+export const presetAdaptor = createEntityAdaptor({
+  idSelector: (preset) => preset.name,
+  lens: createLens<Low3State>().fromPath('presets'),
+  // comparer: (a, b) => (a.name === b.name ? 0 : a.name > b.name ? 1 : -1),
+});

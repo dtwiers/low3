@@ -16,6 +16,7 @@
     "@nrwl/next": "13.8.3",
     "@types/websocket": "^1.0.5",
     "axios": "^0.26.0",
+    "classnames": "^2.3.1",
     "core-js": "^3.6.5",
     "express": "4.17.2",
     "fast-deep-equal": "^3.1.3",

@@ -1,3 +1,4 @@
+import { EMPTY_ENTITY_STATE, EntityState } from '@brandingbrand/cargo-hold'
 export type LogoType = typeof logos[number];
 
 export const logos = [
@@ -7,16 +8,23 @@ export const logos = [
   'fivestar',
   'fourt',
   'kaufman',
-  'kourke',
+  'lynch',
   'nfg',
   'platner',
   'rar',
+  'rourke',
   'sieren',
   'stensland',
   'stewarts',
   'toenjes',
 ] as const;
 
+export const defaultLow3Bar: Low3Bar = {
+  header: '',
+  footer: '',
+  title: '',
+  subtitle: '',
+};
 export type Low3Bar = {
   header?: string;
   footer?: string;
@@ -25,13 +33,13 @@ export type Low3Bar = {
   asset?: LogoType;
 };
 export type Low3State = {
-  presets: Low3Bar[];
+  presets: EntityState<never>;
   active: Low3Bar | null;
   visible: boolean;
 };
 
 export const initialLow3State: Low3State = {
-  presets: [],
+  presets: EMPTY_ENTITY_STATE,
   active: null,
   visible: false,
 };

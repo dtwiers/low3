@@ -1,0 +1,11 @@
+
+.addButton {
+  margin-top: 20px;
+  width: 80px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #99A;
+  color: white;
+  font-size: 30px;
+}

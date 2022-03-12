@@ -1,22 +1,69 @@
 import React from 'react';
-import { Low3Bar } from '../../models/api-state';
+import { Subject } from 'rxjs';
+import { Low3Bar, Low3State, presetAdaptor } from '../../models/api-state';
 import Preset from '../preset/preset';
-import './preset-manager.module.css';
+import styles from './preset-manager.module.css';
 
 export type PresetManagerProps = {
-  presets: Low3Bar[];
-  setPresets: (presets: Low3Bar[]) => void;
+  state: Low3State;
+  localActive: Low3Bar;
+  // presets: EntityState<Low3BarWithName>;
+  setState: (state: Low3State) => void;
+  // setPresets: (presets: EntityState<Low3BarWithName>) => void;
   activate: (preset: Low3Bar) => void;
-  load: (preset: Low3Bar) => void;
+  load: Subject<Partial<Low3Bar>>;
 };
 
 export const PresetManager: React.FC<PresetManagerProps> = (props) => {
   return (
     <div>
-      {props.presets.map((preset, index) => (
-        <Preset bar={preset} key={index} />
+      {presetAdaptor.selectors.selectAll(props.state).map((preset) => (
+        <Preset
+          bar={preset}
+          key={preset.name}
+          onDelete={() =>
+            props.setState(
+              presetAdaptor.lensedReducers.removeOne(preset.name)(props.state)
+            )
+          }
+          onGoLive={() => props.activate(preset)}
+          onLoad={() => props.load.next(preset)}
+          onSaveFromEditor={() =>
+            props.setState(
+              presetAdaptor.lensedReducers.setOne({
+                ...props.state.active,
+                name: preset.name,
+              })(props.state)
+            )
+          }
+          onChangeName={(newName) => {
+            if (newName !== preset.name) {
+              props.setState(
+                presetAdaptor.lensedReducers.removeOne(preset.name)(
+                  presetAdaptor.lensedReducers.setOne({
+                    ...preset,
+                    name: newName,
+                  })(props.state)
+                )
+              );
+            }
+          }}
+        />
       ))}
-      <button onClick={() => props.setPresets([...props.presets, {}])}>+</button>
+      <button
+        type="button"
+        className={styles.addButton}
+        onClick={() =>
+          props.setState(
+            presetAdaptor.lensedReducers.addOne({
+              name: '',
+              ...props.localActive,
+            })(props.state)
+          )
+        }
+      >
+        +
+      </button>
     </div>
   );
 };
