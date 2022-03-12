@@ -1,8 +1,9 @@
 .container {
   font-family: 'Exo 2';
   width: 440px;
-  padding: 20px;
-  border: 1px solid black;
+  border-right: 1px solid black;
+  /* padding: 20px; */
+  /* border: 1px solid black; */
   
 }
 

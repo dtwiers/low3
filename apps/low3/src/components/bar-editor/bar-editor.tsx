@@ -1,17 +1,42 @@
-import React from 'react';
+import { useSubscription } from 'observable-hooks';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Observable } from 'rxjs';
 import { logos, Low3Bar } from '../../models/api-state';
 import styles from './bar-editor.module.css';
 
 export type BarEditorProps = {
   initialValue: Low3Bar;
   onSubmit: (value: Low3Bar) => void;
+  onChange: (value: Low3Bar) => void;
+  pushActive$: Observable<Partial<Low3Bar>>;
 };
 
 const BarEditor: React.FC<BarEditorProps> = (props) => {
-  const { register, handleSubmit } = useForm<Low3Bar>({
+  const { register, handleSubmit, watch, setValue } = useForm<Low3Bar>({
     defaultValues: props.initialValue,
   });
+  useSubscription(props.pushActive$, (active) => {
+    if (active.asset !== undefined) {
+      setValue('asset', active.asset);
+    }
+    if (active.footer !== undefined) {
+      setValue('footer', active.footer);
+    }
+    if (active.header !== undefined) {
+      setValue('header', active.header);
+    }
+    if (active.subtitle !== undefined) {
+      setValue('subtitle', active.subtitle);
+    }
+    if (active.title !== undefined) {
+      setValue('title', active.title);
+    }
+  });
+  useEffect(() => {
+    const subscription = watch(props.onChange);
+    return subscription.unsubscribe;
+  }, [watch, props.onChange]);
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit(props.onSubmit)} className={styles.form}>
