@@ -28,14 +28,15 @@ export const PresetManager: React.FC<PresetManagerProps> = (props) => {
           }
           onGoLive={() => props.activate(preset)}
           onLoad={() => props.load.next(preset)}
-          onSaveFromEditor={() =>
+          onSaveFromEditor={() => {
+            console.log(props.state.active);
             props.setState(
               presetAdaptor.lensedReducers.setOne({
                 ...props.state.active,
                 name: preset.name,
               })(props.state)
-            )
-          }
+            );
+          }}
           onChangeName={(newName) => {
             if (newName !== preset.name) {
               props.setState(

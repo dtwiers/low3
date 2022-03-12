@@ -61,7 +61,7 @@ const Controller: React.FC = () => {
         <title>Lower 3rd Controller</title>
       </Head>
       <BarEditor
-        initialValue={defaultBar}
+        initialValue={state.active}
         onSubmit={setActive}
         onChange={setActiveLocal}
         pushActive$={pushActive$}

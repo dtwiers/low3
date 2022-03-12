@@ -63,7 +63,10 @@ export const Preset: FC<PresetProps> = (props) => {
         <button
           type="button"
           className={classNames(styles.actionButton, styles.saveButton)}
-          onDoubleClick={props.onSaveFromEditor}
+          onDoubleClick={() => {
+            console.log(props.bar)
+            props.onSaveFromEditor()
+          }}
         >
           Save from Editor (dbl)
         </button>

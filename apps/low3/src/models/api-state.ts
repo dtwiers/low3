@@ -13,6 +13,7 @@ export const logos = [
   'engelking',
   'fivestar',
   'fourt',
+  'he-man',
   'kaufman',
   'lynch',
   'nfg',
