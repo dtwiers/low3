@@ -7,52 +7,45 @@ import { PresetManager } from '../src/components/preset-manager';
 import { initialLow3State, Low3Bar, Low3State } from '../src/models/api-state';
 import styles from './controller.module.css';
 
-const defaultBar: Low3Bar = {
-  header: '',
-  footer: '',
-  title: '',
-  subtitle: '',
-};
-
 const usePushState = (initialState: Low3State) => {
   const [serverState, setServerState] = useState(initialState);
   useEffect(() => {
     axios
       .get('/api/blob')
       .then((result) => result.data)
-      .then((result) => setServerState(result ?? initialState));
+      .then((result) => {
+        setServerState(result ?? initialState);
+      });
   }, []);
-  const [state, setState] = useState(initialState);
   const pushState = (data: Low3State) => {
-    // setState(data);
     setServerState(data);
     axios.post('/api/blob', data);
   };
-  return [state, setState, pushState, serverState] as const;
+  return [pushState, serverState] as const;
 };
 
 const pushActive$ = new Subject<Partial<Low3Bar>>();
 
 const Controller: React.FC = () => {
-  const [state, setState, pushState, serverState] =
-    usePushState(initialLow3State);
+  const [pushState, state] = usePushState(initialLow3State);
+  const [searchTerm, setSearchTerm] = useState('');
   const setActive = (active: Low3Bar) => {
     pushState({
-      ...serverState,
-      active,
-    });
-  };
-
-  const setActiveLocal = (active: Low3Bar) => {
-    console.log(active);
-    setState({
       ...state,
       active,
     });
   };
 
+  const updateEditor = (inEditor: Low3Bar) => {
+    console.log(inEditor);
+    pushState({
+      ...state,
+      inEditor: inEditor,
+    });
+  };
+
   const toggleVisible = () => {
-    pushState({ ...serverState, visible: !serverState.visible });
+    pushState({ ...state, visible: !state.visible });
   };
 
   return (
@@ -61,27 +54,33 @@ const Controller: React.FC = () => {
         <title>Lower 3rd Controller</title>
       </Head>
       <BarEditor
-        initialValue={state.active}
+        initialValue={state.inEditor}
         onSubmit={setActive}
-        onChange={setActiveLocal}
+        onChange={updateEditor}
         pushActive$={pushActive$}
       />
       <div className={styles.rightHalf}>
         <button
           className={`${styles.toggleButton} ${
-            serverState.visible ? styles.hideButton : styles.showButton
+            state.visible ? styles.hideButton : styles.showButton
           }`}
           type="button"
           onClick={toggleVisible}
         >
-          {serverState.visible ? 'hide' : 'show'}
+          {state.visible ? 'hide' : 'show'}
         </button>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(ev) => setSearchTerm(ev.target.value)}
+          className={styles.searchBar}
+        />
         <PresetManager
-          state={serverState}
+          state={state}
           activate={setActive}
           setState={pushState}
-          localActive={state.active}
           load={pushActive$}
+          searchTerm={searchTerm}
         />
       </div>
     </div>

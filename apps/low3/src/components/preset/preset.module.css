@@ -60,6 +60,11 @@
   background-color: #ffcc00;
 }
 
+.inactiveSaveButton {
+  background-color: #ccc;
+  color: #888;
+}
+
 .loadButton {
   background-color: #3322ff;
   color: white;

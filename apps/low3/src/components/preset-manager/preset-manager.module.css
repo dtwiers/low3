@@ -9,3 +9,12 @@
   color: white;
   font-size: 30px;
 }
+
+.container {
+  height: 500px;
+  overflow-y: auto;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}

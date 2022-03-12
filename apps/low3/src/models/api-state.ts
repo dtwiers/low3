@@ -14,6 +14,7 @@ export const logos = [
   'fivestar',
   'fourt',
   'he-man',
+  'jordan-show-stock',
   'kaufman',
   'lynch',
   'nfg',
@@ -45,13 +46,15 @@ export type Low3BarWithName = {
 
 export type Low3State = {
   presets: EntityState<Low3BarWithName>;
-  active: Low3Bar | null;
+  active: Low3Bar;
+  inEditor: Low3Bar;
   visible: boolean;
 };
 
 export const initialLow3State: Low3State = {
   presets: EMPTY_ENTITY_STATE,
-  active: null,
+  active: defaultLow3Bar,
+  inEditor: defaultLow3Bar,
   visible: false,
 };
 

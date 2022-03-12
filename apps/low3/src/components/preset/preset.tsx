@@ -1,6 +1,7 @@
 import classNames from 'classnames';
+import equal from 'fast-deep-equal';
 import { FC, useState } from 'react';
-import { Low3BarWithName } from '../../models/api-state';
+import { Low3Bar, Low3BarWithName } from '../../models/api-state';
 import styles from './preset.module.css';
 
 /* eslint-disable-next-line */
@@ -11,6 +12,7 @@ export interface PresetProps {
   onGoLive: () => void;
   onSaveFromEditor: () => void;
   onChangeName: (newName: string) => void;
+  currentActive: Low3Bar;
 }
 
 export const Preset: FC<PresetProps> = (props) => {
@@ -62,10 +64,16 @@ export const Preset: FC<PresetProps> = (props) => {
         </button>
         <button
           type="button"
-          className={classNames(styles.actionButton, styles.saveButton)}
+          className={classNames(
+            styles.actionButton,
+            styles.saveButton,
+            equal({ ...props.currentActive, name: props.bar.name }, props.bar)
+              ? styles.inactiveSaveButton
+              : styles.saveButton
+          )}
           onDoubleClick={() => {
-            console.log(props.bar)
-            props.onSaveFromEditor()
+            console.log(props.bar);
+            props.onSaveFromEditor();
           }}
         >
           Save from Editor (dbl)
