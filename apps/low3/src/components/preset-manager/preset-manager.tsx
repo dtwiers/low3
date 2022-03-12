@@ -17,20 +17,6 @@ export type PresetManagerProps = {
 export const PresetManager: React.FC<PresetManagerProps> = (props) => {
   return (
     <div className={styles.container}>
-      <button
-        type="button"
-        className={styles.addButton}
-        onClick={() =>
-          props.setState(
-            presetAdaptor.lensedReducers.addOne({
-              name: '',
-              ...props.state.inEditor,
-            })(props.state)
-          )
-        }
-      >
-        +
-      </button>
       {presetAdaptor.selectors
         .selectAll(props.state)
         .filter(
@@ -73,6 +59,20 @@ export const PresetManager: React.FC<PresetManagerProps> = (props) => {
             }}
           />
         ))}
+      <button
+        type="button"
+        className={styles.addButton}
+        onClick={() =>
+          props.setState(
+            presetAdaptor.lensedReducers.addOne({
+              name: '',
+              ...props.state.inEditor,
+            })(props.state)
+          )
+        }
+      >
+        +
+      </button>
     </div>
   );
 };
