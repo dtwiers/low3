@@ -38,7 +38,7 @@ export const Index: React.FC = () => {
             }
           })
           .catch(),
-      250
+      1000
     );
     return () => clearInterval(interval);
   }, [selector, state]);
